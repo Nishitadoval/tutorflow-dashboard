@@ -1,0 +1,46 @@
+<div class="roster">
+  <div class="roster-header">
+    <h2>Students</h2>
+    <input
+      class="search"
+      type="search"
+      placeholder="Search by name or focus"
+      [ngModel]="searchTerm()"
+      (ngModelChange)="searchTerm.set($event)"
+    />
+  </div>
+
+  @if (state().loading) {
+    <p class="status">Loading students…</p>
+  } @else if (state().error) {
+    <p class="status status-error">{{ state().error }}</p>
+  } @else if (state().students.length === 0) {
+    <p class="status">No students match that search.</p>
+  } @else {
+    <ul class="roster-list">
+      @for (s of state().students; track s.id) {
+        <li>
+          <button
+            type="button"
+            class="roster-item"
+            [class.selected]="s.id === selectedId()"
+            (click)="select.emit(s.id)"
+          >
+            @if (s.overdue_homework_count > 0) {
+              <span
+                class="notch"
+                [attr.aria-label]="s.overdue_homework_count + ' overdue homework item' + (s.overdue_homework_count === 1 ? '' : 's')"
+                [title]="s.overdue_homework_count + ' overdue'"
+              ></span>
+            }
+            <span class="name">{{ s.name }}</span>
+            <span class="meta">
+              <span>{{ s.grade || 'Grade not set' }}</span>
+              <span>{{ s.subject_focus || 'Focus not set' }}</span>
+            </span>
+          </button>
+        </li>
+      }
+    </ul>
+  }
+</div>

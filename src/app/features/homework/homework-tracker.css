@@ -1,0 +1,92 @@
+.hw-form {
+  display: flex;
+  align-items: flex-end;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  background: var(--paper-raised);
+  border: 1px solid var(--rule);
+  margin-bottom: var(--space-5);
+  flex-wrap: wrap;
+}
+
+.hw-form label {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  font-size: 13px;
+  color: var(--ink-soft);
+}
+
+.desc-field { flex: 1; min-width: 200px; }
+
+.hw-form input {
+  padding: var(--space-2);
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+  background: #fff;
+  color: var(--ink);
+}
+
+.hw-form button {
+  padding: var(--space-2) var(--space-4);
+  background: var(--ink);
+  color: var(--paper);
+  border: none;
+  border-radius: 3px;
+  font-size: 14px;
+  height: 36px;
+}
+
+.hw-form button:hover { background: var(--ink-soft); }
+
+.hw-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.hw-list li {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3) 0;
+  border-bottom: 1px solid var(--rule);
+}
+
+.hw-list li.overdue .hw-due {
+  color: var(--red);
+  font-weight: 600;
+}
+
+.hw-check {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  flex: 1;
+}
+
+.hw-due {
+  font-size: 13px;
+  color: var(--ink-soft);
+  white-space: nowrap;
+}
+
+.hw-delete {
+  background: none;
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+  color: var(--red);
+  padding: var(--space-1) var(--space-2);
+  font-size: 12.5px;
+}
+
+.hw-delete:hover {
+  background: var(--red-soft);
+  border-color: var(--red);
+}
+
+.empty {
+  color: var(--ink-soft);
+  font-size: 14px;
+  border-bottom: none;
+}

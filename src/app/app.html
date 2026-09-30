@@ -1,0 +1,19 @@
+<div class="shell">
+  <aside class="rail">
+    <app-roster
+      [selectedId]="selectedId()"
+      [refreshTick]="rosterRefreshTick()"
+      (select)="onSelect($event)"
+    />
+  </aside>
+  <main class="workspace">
+    @if (selectedId(); as id) {
+      <app-student-workspace [studentId]="id" (dataChanged)="onWorkspaceDataChanged()" />
+    } @else {
+      <div class="empty-state">
+        <h1>TutorFlow</h1>
+        <p>Pick a student from the roster to see their sessions, homework, and progress reports.</p>
+      </div>
+    }
+  </main>
+</div>

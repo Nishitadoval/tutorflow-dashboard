@@ -1,0 +1,34 @@
+<div class="report-actions">
+  <button type="button" (click)="generate()" [disabled]="generating()">
+    @if (generating()) { Generating… } @else { Generate a new draft }
+  </button>
+</div>
+
+@if (error()) {
+  <p class="status status-error">{{ error() }}</p>
+}
+
+@if (draft(); as text) {
+  <div class="draft-card">
+    <p class="draft-label">Draft — not saved yet</p>
+    <p class="draft-text">{{ text }}</p>
+    <div class="draft-actions">
+      <button type="button" (click)="save()" [disabled]="saving()">
+        @if (saving()) { Saving… } @else { Save this exact text }
+      </button>
+      <button type="button" class="secondary" (click)="discardDraft()">Discard</button>
+    </div>
+  </div>
+}
+
+<h3 class="saved-heading">Saved reports</h3>
+<ul class="report-list">
+  @for (r of reports(); track r.id) {
+    <li>
+      <span class="report-date">{{ r.created_at }}</span>
+      <p class="report-summary">{{ r.summary }}</p>
+    </li>
+  } @empty {
+    <li class="empty">No saved reports yet.</li>
+  }
+</ul>

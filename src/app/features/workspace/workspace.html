@@ -1,0 +1,51 @@
+@if (loading()) {
+  <p class="status">Loading…</p>
+} @else if (error()) {
+  <p class="status status-error">{{ error() }}</p>
+} @else if (detail(); as d) {
+  <header class="student-header">
+    <h1>{{ d.student.name }}</h1>
+    <p class="student-meta">
+      <span>{{ d.student.grade || 'Grade not set' }}</span>
+      <span>{{ d.student.subject_focus || 'Focus not set' }}</span>
+    </p>
+  </header>
+
+  <nav class="tabs">
+    <button type="button" [class.active]="activeTab() === 'sessions'" (click)="activeTab.set('sessions')">
+      Sessions
+    </button>
+    <button type="button" [class.active]="activeTab() === 'homework'" (click)="activeTab.set('homework')">
+      Homework
+      @if (d.homework.length > 0) {
+        <span class="tab-count">{{ d.homework.length }}</span>
+      }
+    </button>
+    <button type="button" [class.active]="activeTab() === 'reports'" (click)="activeTab.set('reports')">
+      Progress reports
+    </button>
+  </nav>
+
+  <div class="tab-panel">
+    @switch (activeTab()) {
+      @case ('sessions') {
+        <app-session-log [sessions]="d.sessions" (logNote)="onLogSession($event)" />
+      }
+      @case ('homework') {
+        <app-homework-tracker
+          [items]="d.homework"
+          (assign)="onAssignHomework($event)"
+          (toggle)="onToggleHomework($event)"
+          (remove)="onDeleteHomework($event)"
+        />
+      }
+      @case ('reports') {
+        <app-progress-report-viewer
+          [studentId]="studentId()"
+          [reports]="d.progressReports"
+          (saved)="onReportSaved()"
+        />
+      }
+    }
+  </div>
+}

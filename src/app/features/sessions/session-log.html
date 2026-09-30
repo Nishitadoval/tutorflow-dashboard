@@ -1,0 +1,31 @@
+<form class="log-form" (ngSubmit)="submit()">
+  <div class="field-row">
+    <label>
+      Date
+      <input type="date" [ngModel]="date()" (ngModelChange)="date.set($event)" name="date" required />
+    </label>
+  </div>
+  <label class="note-field">
+    Note
+    <textarea
+      [ngModel]="note()"
+      (ngModelChange)="note.set($event)"
+      name="note"
+      rows="3"
+      placeholder="What happened in this session?"
+      required
+    ></textarea>
+  </label>
+  <button type="submit">Log session note</button>
+</form>
+
+<ul class="session-list">
+  @for (s of sessions(); track s.id) {
+    <li>
+      <span class="session-date">{{ s.session_date }}</span>
+      <p class="session-note">{{ s.note }}</p>
+    </li>
+  } @empty {
+    <li class="empty">No sessions logged yet.</li>
+  }
+</ul>

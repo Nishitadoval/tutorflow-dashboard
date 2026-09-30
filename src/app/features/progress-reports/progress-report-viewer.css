@@ -1,0 +1,91 @@
+.report-actions {
+  margin-bottom: var(--space-4);
+}
+
+.report-actions button {
+  padding: var(--space-2) var(--space-4);
+  background: var(--ink);
+  color: var(--paper);
+  border: none;
+  border-radius: 3px;
+  font-size: 14px;
+}
+
+.report-actions button:hover { background: var(--ink-soft); }
+.report-actions button:disabled { opacity: 0.6; cursor: default; }
+
+.status-error {
+  color: var(--red);
+  font-size: 14px;
+}
+
+.draft-card {
+  background: var(--green-soft);
+  border: 1px solid var(--green);
+  padding: var(--space-4);
+  margin-bottom: var(--space-5);
+}
+
+.draft-label {
+  margin: 0 0 var(--space-2);
+  font-size: 12.5px;
+  color: var(--green);
+  font-weight: 600;
+}
+
+.draft-text {
+  margin: 0 0 var(--space-3);
+  white-space: pre-wrap;
+}
+
+.draft-actions {
+  display: flex;
+  gap: var(--space-2);
+}
+
+.draft-actions button {
+  padding: var(--space-2) var(--space-3);
+  border: none;
+  border-radius: 3px;
+  font-size: 13px;
+  background: var(--green);
+  color: #fff;
+}
+
+.draft-actions button.secondary {
+  background: none;
+  border: 1px solid var(--rule-strong);
+  color: var(--ink-soft);
+}
+
+.saved-heading {
+  font-size: 15px;
+  margin-bottom: var(--space-3);
+}
+
+.report-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.report-list li {
+  padding: var(--space-3) 0;
+  border-bottom: 1px solid var(--rule);
+}
+
+.report-date {
+  font-size: 12.5px;
+  color: var(--ink-soft);
+  font-weight: 600;
+}
+
+.report-summary {
+  margin: var(--space-1) 0 0;
+}
+
+.empty {
+  color: var(--ink-soft);
+  font-size: 14px;
+  border-bottom: none;
+}

@@ -1,0 +1,43 @@
+<form class="hw-form" (ngSubmit)="submit()">
+  <label class="desc-field">
+    Description
+    <input
+      type="text"
+      [ngModel]="description()"
+      (ngModelChange)="description.set($event)"
+      name="description"
+      placeholder="What's the assignment?"
+      required
+    />
+  </label>
+  <label>
+    Due date
+    <input type="date" [ngModel]="dueDate()" (ngModelChange)="dueDate.set($event)" name="dueDate" />
+  </label>
+  <button type="submit">Assign homework</button>
+</form>
+
+<ul class="hw-list">
+  @for (item of items(); track item.id) {
+    <li [class.overdue]="isOverdue(item)">
+      <label class="hw-check">
+        <input
+          type="checkbox"
+          [checked]="item.completed"
+          (change)="toggle.emit({ id: item.id, completed: !item.completed })"
+        />
+        <span class="hw-description">{{ item.description }}</span>
+      </label>
+      <span class="hw-due">
+        @if (item.due_date) {
+          Due {{ item.due_date }}
+        } @else {
+          No due date
+        }
+      </span>
+      <button type="button" class="hw-delete" (click)="confirmDelete(item)">Delete</button>
+    </li>
+  } @empty {
+    <li class="empty">No open homework.</li>
+  }
+</ul>
